@@ -72,18 +72,12 @@ void stack<T>::pop()
 		swap();
 	}
 }
-T stack<T>::top()
+template <typename T>
+T stack<T>::top()const
 {
 	if (empty())
 		throw std::logic_error("Stack is empty");
 	else return array_[count - 1];
-}
-template <typename T>
-T stack<T>::last()const
-{
-	if (count_ == 0)
-		throw std::logic_error("Stack is empty");
-	else return array_[count_ - 1];
 }
 template <typename T>
 void stack<T>::print()
