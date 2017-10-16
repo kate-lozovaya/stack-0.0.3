@@ -6,17 +6,16 @@ template <typename T>
 class stack
 {
 public:
-	stack();
-	size_t count() const;
-	size_t array_size() const;
-	T * operator[](unsigned int index) const;
-	void push(T const &);
-	void pop();
-	T top();
-	T last()const;
-	void print();
-	void swap();
-	bool empty();
+	stack()noexcept;
+	size_t count() const noexcept;
+	size_t array_size() const noexcept; 
+	T * operator[](unsigned int index) const noexcept;
+	void push(T const &)noexcept;
+	void pop()noexcept;
+	T top()noexcept;
+	void print()noexcept;
+	void swap()noexcept;
+	bool empty()noexcept;
 private:
 	T * array_;
 	size_t array_size_;
@@ -24,29 +23,29 @@ private:
 };
 
 template <typename T>
-stack<T>::stack()
+stack<T>::stack()noexcept
 {
 	array_ = nullptr;
 	array_size_ = 0;
 	count_ = 0;
 }
 template <typename T>
-size_t stack<T>::array_size() const
+size_t stack<T>::array_size() const noexcept
 {
 	return array_size_;
 }
 template <typename T>
-size_t stack<T>::count() const
+size_t stack<T>::count() const noexcept
 {
 	return count_;
 }
 template <typename T>
-T * stack<T>::operator[](unsigned int index) const
+T * stack<T>::operator[](unsigned int index) const noexcept
 {
 	return array_[index];
 }
 template <typename T>
-void stack<T>::push(T const & value)
+void stack<T>::push(T const & value)noexcept
 {
 	if (array_size_ == 0)
 	{
@@ -61,7 +60,7 @@ void stack<T>::push(T const & value)
 	array_[count_++] = value;
 }
 template <typename T>
-void stack<T>::pop()
+void stack<T>::pop()noexcept
 {
 	if (empty())
 		throw std::logic_error("Stack is empty");
@@ -73,21 +72,21 @@ void stack<T>::pop()
 	}
 }
 template <typename T>
-T stack<T>::top()const
+T stack<T>::top()const noexcept
 {
 	if (empty())
 		throw std::logic_error("Stack is empty");
 	else return array_[count - 1];
 }
 template <typename T>
-void stack<T>::print()
+void stack<T>::print()noexcept
 {
 	for (unsigned int i = 0; i < count_; ++i)
 		std::cout << array_[i] << " ";
 	std::cout << std::endl;
 }
 template <typename T>
-void stack<T>::swap()
+void stack<T>::swap()noexcept
 {
 	T * new_array = new T[array_size_]();
 	std::copy(array_, array_ + count_, new_array);
@@ -95,7 +94,7 @@ void stack<T>::swap()
 	array_ = new_array;
 }
 template <typename T>
-bool stack<T>::empty()
+bool stack<T>::empty()noexcept
 {
 	return (count_ == 0) ? true : false;
 }
