@@ -59,7 +59,7 @@ size_t stack<T>::count()const noexcept
 template <typename T>
 void stack<T>::push(T const & value)noexcept
 {
-	if (array_size_ == 0)
+	if (empty())
 	{
 		array_size_ = 1;
 		array_ = new T[array_size_]();
