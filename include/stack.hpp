@@ -93,7 +93,7 @@ T stack<T>::top()noexcept
 {
 	if (empty())
 		throw std::logic_error("Stack is empty");
-	else return array_[count - 1];
+	else return array_[count_ - 1];
 }
 template <typename T>
 void stack<T>::print(std::ostream&stream)const noexcept
