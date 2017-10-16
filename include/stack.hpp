@@ -6,7 +6,7 @@ template <typename T>
 class stack
 {
 public:
-	stack()noexcept;
+	stack();
 	~stack()noexcept;
 	stack(stack<T> const&)noexcept;
 	stack& operator=(stack<T> const&)noexcept;
@@ -14,7 +14,7 @@ public:
 	size_t array_size()const noexcept;
 	void push(T const&)noexcept;
 	void pop()noexcept;
-	T top()const noexcept;
+	T top()noexcept;
 	void print(std::ostream&stream)const noexcept;
 	friend std::ostream&operator << (std::ostream&stream, const stack<T>&)noexcept;
 	void swap(stack<T>&)noexcept;
@@ -26,7 +26,7 @@ private:
 };
 
 template <typename T>
-stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}noexcept
+stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}
 template <typename T>
 stack<T>::~stack()noexcept
 {
@@ -40,7 +40,7 @@ stack<T>::stack(stack<T> const& other)noexcept
 	std::copy(other.array_, other.array_ + count_, array_);
 }
 template <typename T>
-auto stack<T>::operator=(stack<T> const & other) -> stack& noexcept
+stack<T>& stack<T>::operator=(stack<T> const & other)noexcept
 {
 	if (&other != this)
 		stack(other).swap(*this);
@@ -81,13 +81,15 @@ void stack<T>::pop()noexcept
 		throw std::logic_error("Stack is empty");
 	else
 	{
-		if (count_ - 1 == array_size_ / 2)
-			array_size_ /= 2;
-		swap();
+		T * new_array = new T[array_size_]();
+		--count_;
+		std::copy(array_, array_ + count_, new_array);
+		delete[] array_;
+		array_ = new_array;
 	}
 }
 template <typename T>
-T stack<T>::top()const noexcept
+T stack<T>::top()noexcept
 {
 	if (empty())
 		throw std::logic_error("Stack is empty");
