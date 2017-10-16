@@ -1,4 +1,4 @@
-#include "stack-0.0.2.hpp"
+#include "stack.hpp"
 #include <stdlib.h>
 #include <string>
 
@@ -27,7 +27,7 @@ int main()
 		}
 		case '?':
 		{
-					std::cout << Stack.last();
+					std::cout << Stack.top();
 					std::cout << std::endl;
 					break;
 		}
