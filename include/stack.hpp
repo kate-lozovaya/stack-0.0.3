@@ -12,7 +12,7 @@ public:
 	T * operator[](unsigned int index) const noexcept;
 	void push(T const &)noexcept;
 	void pop()noexcept;
-	T top()noexcept;
+	T top()const noexcept;
 	void print()noexcept;
 	void swap()noexcept;
 	bool empty()noexcept;
