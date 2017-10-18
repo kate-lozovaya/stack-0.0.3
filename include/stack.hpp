@@ -27,7 +27,7 @@ private:
 template <typename T>
 stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}
 template <typename T>
-stack<T>::~stack()noexcept
+stack<T>::~stack()
 {
 	delete[] array_;
 }
@@ -39,19 +39,19 @@ stack<T>::stack(stack<T> const& other)
 	std::copy(other.array_, other.array_ + count_, array_);
 }
 template <typename T>
-stack<T>& stack<T>::operator=(stack<T> const & other)noexcept
+stack<T>& stack<T>::operator=(stack<T> const & other)
 {
 	if (&other != this)
 		stack(other).swap(*this);
 	return *this;
 }
 template <typename T>
-size_t stack<T>::array_size()const noexcept
+size_t stack<T>::array_size()const 
 {
 	return array_size_;
 }
 template <typename T>
-size_t stack<T>::count()const noexcept
+size_t stack<T>::count()const 
 {
 	return count_;
 }
@@ -88,28 +88,28 @@ void stack<T>::pop()
 	}
 }
 template <typename T>
-T stack<T>::top()const noexcept
+T stack<T>::top()const 
 {
 	if (empty())
 		throw std::logic_error("Stack is empty");
 	else return array_[count_ - 1];
 }
 template <typename T>
-void stack<T>::print(std::ostream&stream)const noexcept
+void stack<T>::print(std::ostream&stream)const 
 {
 	for (unsigned int i = 0; i < count_; ++i)
 		stream << array_[i] << " ";
 	stream << std::endl;
 }
 template <typename T>
-void stack<T>::swap(stack<T>& other)noexcept
+void stack<T>::swap(stack<T>& other)
 {
 	std::swap(array_, other.array_);
 	std::swap(array_size_, other.array_size_);
 	std::swap(count_, other.count_);
 }
 template <typename T>
-bool stack<T>::empty()const noexcept
+bool stack<T>::empty()const 
 {
 	return (count_ == 0);
 }
