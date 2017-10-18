@@ -16,7 +16,6 @@ public:
 	void pop()noexcept;
 	T top()noexcept;
 	void print(std::ostream&stream)const noexcept;
-	friend std::ostream&operator << (std::ostream&stream, const stack<T>&)noexcept;
 	void swap(stack<T>&)noexcept;
 	bool empty()noexcept;
 private:
@@ -103,11 +102,6 @@ void stack<T>::print(std::ostream&stream)const noexcept
 	stream << std::endl;
 }
 template <typename T>
-std::ostream& operator << (std::ostream&stream, const stack<T>&stack_)noexcept
-{
-	return stack_.print(stream);
-}
-template <typename T>
 void stack<T>::swap(stack<T>& other)noexcept
 {
 	std::swap(array_, other.array_);
@@ -117,5 +111,5 @@ void stack<T>::swap(stack<T>& other)noexcept
 template <typename T>
 bool stack<T>::empty()noexcept
 {
-	return (count_ == 0) ? true : false;
+	return (count_ == 0);
 }
