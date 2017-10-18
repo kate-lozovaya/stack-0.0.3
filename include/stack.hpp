@@ -97,9 +97,12 @@ T stack<T>::top()const
 template <typename T>
 void stack<T>::print(std::ostream&stream)const 
 {
-	for (unsigned int i = 0; i < count_; ++i)
-		stream << array_[i] << " ";
-	stream << std::endl;
+	if(!empty())
+	{
+	        for (unsigned int i = 0; i < count_; ++i)
+		        stream << array_[i] << " ";
+	        stream << std::endl;
+	}
 }
 template <typename T>
 void stack<T>::swap(stack<T>& other)
