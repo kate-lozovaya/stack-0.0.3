@@ -7,17 +7,17 @@ class stack
 {
 public:
 	stack();
-	~stack()noexcept;
-	stack(stack<T> const&);
-	stack& operator=(stack<T> const&)noexcept;
-	size_t count()const noexcept;
-	size_t array_size()const noexcept;
-	void push(T const&);
-	void pop();
-	T top()const noexcept;
-	void print(std::ostream&stream)const noexcept;
-	void swap(stack<T>&)noexcept;
-	bool empty()const noexcept;
+	~stack()/*noexcept*/;
+	stack(stack<T> const&)/*basic*/;
+	stack& operator=(stack<T> const&)/*basic*/;
+	size_t count()const /*noexcept*/;
+	size_t array_size()const /*noexcept*/;
+	void push(T const&)/*basic*/;
+	void pop()/*strong*/;
+	T top()const /*strong*/;
+	void print(std::ostream&stream)const /*noexcept*/;
+	void swap(stack<T>&)/*noexcept*/;
+	bool empty()const /*noexcept*/;
 private:
 	T * array_;
 	size_t array_size_;
