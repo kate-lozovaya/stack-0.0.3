@@ -7,17 +7,16 @@ class stack
 {
 public:
 	stack();
-	~stack()/*noexcept*/;
-	stack(stack<T> const&)/*basic*/;
-	stack& operator=(stack<T> const&)/*basic*/;
-	size_t count()const /*noexcept*/;
-	size_t array_size()const /*noexcept*/;
+	~stack()noexcept;
+	stack(stack<T> const&);
+	stack& operator=(stack<T> const&)noexcept;
+	size_t count()const noexcept;
 	void push(T const&)/*basic*/;
 	void pop()/*strong*/;
 	T top()const /*strong*/;
-	void print(std::ostream&stream)const /*noexcept*/;
-	void swap(stack<T>&)/*noexcept*/;
-	bool empty()const /*noexcept*/;
+	void print(std::ostream&stream)const;
+	void swap(stack<T>&)noexcept;
+	bool empty()const noexcept;
 private:
 	T * array_;
 	size_t array_size_;
@@ -27,7 +26,7 @@ private:
 template <typename T>
 stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}
 template <typename T>
-stack<T>::~stack()
+stack<T>::~stack()noexcept
 {
 	delete[] array_;
 }
@@ -39,19 +38,14 @@ stack<T>::stack(stack<T> const& other)
 	std::copy(other.array_, other.array_ + count_, array_);
 }
 template <typename T>
-stack<T>& stack<T>::operator=(stack<T> const & other)
+stack<T>& stack<T>::operator=(stack<T> const & other)noexcept
 {
 	if (&other != this)
 		stack(other).swap(*this);
 	return *this;
 }
 template <typename T>
-size_t stack<T>::array_size()const 
-{
-	return array_size_;
-}
-template <typename T>
-size_t stack<T>::count()const 
+size_t stack<T>::count()const noexcept
 {
 	return count_;
 }
@@ -105,14 +99,14 @@ void stack<T>::print(std::ostream&stream)const
 	}
 }
 template <typename T>
-void stack<T>::swap(stack<T>& other)
+void stack<T>::swap(stack<T>& other)noexcept
 {
 	std::swap(array_, other.array_);
 	std::swap(array_size_, other.array_size_);
 	std::swap(count_, other.count_);
 }
 template <typename T>
-bool stack<T>::empty()const 
+bool stack<T>::empty()const noexcept
 {
 	return (count_ == 0);
 }
