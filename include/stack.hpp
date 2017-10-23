@@ -23,8 +23,8 @@ private:
 	size_t count_;
 };
 
-template <typename T> noexcept
-stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}
+template <typename T> 
+stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}noexcept
 template <typename T>
 stack<T>::~stack()noexcept
 {
