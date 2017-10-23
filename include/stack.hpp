@@ -12,8 +12,8 @@ public:
 	stack& operator=(stack<T> const&)/*no safety*/;
 	size_t count()const noexcept;
 	void push(T const&)/*no safety*/;
-	void pop()/*no safety*/;
-	T top()const /*no safety*/;
+	void pop()/*strong*/;
+	T top()const /*strong*/;
 	void print(std::ostream&stream)const /*strong*/;
 	void swap(stack<T>&)noexcept;
 	bool empty()const noexcept;
