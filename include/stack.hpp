@@ -24,7 +24,7 @@ private:
 };
 
 template <typename T> 
-stack<T>::stack() : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}noexcept
+stack<T>::stack() noexcept : array_{ nullptr }, array_size_{ 0 }, count_{ 0 } {}
 template <typename T>
 stack<T>::~stack()noexcept
 {
