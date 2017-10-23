@@ -6,8 +6,8 @@ template <typename T>
 class stack
 {
 public:
-	stack()/*strong*/;
-	~stack()noexcept;
+	stack() noexcept;
+	~stack() noexcept;
 	stack(stack<T> const&)/*no safety*/;
 	stack& operator=(stack<T> const&)/*no safety*/;
 	size_t count()const noexcept;
