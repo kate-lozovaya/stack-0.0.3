@@ -8,16 +8,16 @@ class stack
 public:
 	stack() noexcept;
 	~stack() noexcept;
-	stack(stack<T> const&)/*no safety*/;
-	stack& operator=(stack<T> const&)/*no safety*/;
+	stack(stack<T> const&)/*strong*/;
+	stack& operator=(stack<T> const&)/*strong*/;
 	size_t count()const noexcept;
 	void push(T const&)/*no safety*/;
 	void pop()/*strong*/;
 	T top()const /*strong*/;
 	void print(std::ostream&stream)const /*strong*/;
-	void swap(stack<T>&)noexcept;
 	bool empty()const noexcept;
 private:
+	void swap(stack<T>&)noexcept;
 	T * array_;
 	size_t array_size_;
 	size_t count_;
@@ -35,6 +35,7 @@ stack<T>::stack(stack<T> const& other)
 {
 	array_size_ = other.array_size_;
 	count_ = other.count_;	
+	array_ = new T[array_size_];
 	std::copy(other.array_, other.array_ + count_, array_);
 }
 template <typename T>
