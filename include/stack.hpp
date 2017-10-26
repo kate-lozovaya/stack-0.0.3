@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
+#include <new>
 
 template <typename T>
 class stack
@@ -42,8 +43,7 @@ stack<T>::stack(stack<T> const& other)
 	}
 	catch(std::bad_alloc)
 	{
-		std::cout << "ERROR" << std::endl;
-		break;
+		std::cerr << "bad_alloc caught" << std::endl;
 	}
 }
 template <typename T>
@@ -78,8 +78,7 @@ void stack<T>::push(T const & value)
 		}
 		catch(std::bad_alloc)
 	        {
-		        std::cout << "ERROR" << std::endl;
-		        return;
+		        std::cerr << "bad_alloc caught" << std::endl;
 	        }
 	}
 	array_[count_++] = value;
