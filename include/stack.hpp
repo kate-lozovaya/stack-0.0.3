@@ -83,7 +83,8 @@ void stack<T>::push(T const & value)
 		        std::cerr << "bad_alloc caught" << std::endl;
 	        }
 	}
-	array_[count_++] = value;
+	array_[count_] = value;
+	count_++;
 }
 template <typename T>
 void stack<T>::pop()
