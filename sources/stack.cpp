@@ -1,5 +1,4 @@
 #include "stack.hpp"
-#include <stdlib.h>
 #include <string>
 #include <chrono>
 #include <thread>
@@ -13,12 +12,19 @@ void producer(stack<T> &Stack)
 		std::this_thread::sleep_for(std::chrono::seconds(std::rand() % (3) + 1));
 	}
 }
-
+template <typename T> 
 void consumer(stack<T> &Stack)
 {
 	for(;;)
 	{
-		Stack.pop();
+		try
+		{
+			Stack.pop();
+		}
+		catch(std::logic_error)
+		{
+			std::this_thread::sleep_for(std::chrono::seconds(std::rand() % (3) + 2));
+		}
 		std::this_thread::sleep_for(std::chrono::seconds(std::rand() % (3) + 2));
 	}	
 }
@@ -33,6 +39,6 @@ int main()
 	prod.join();
 	cons.join();
 
-	system("pause");
+	
 	return 0;
 }
