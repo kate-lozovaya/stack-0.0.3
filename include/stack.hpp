@@ -19,7 +19,7 @@ public:
 	bool empty()const noexcept;
 private:
 	void swap(stack<T>&)noexcept;
-	std::mutex mutex;
+	std::mutex mutex_;
 	T * array_;
 	size_t array_size_;
 	size_t count_;
@@ -64,7 +64,7 @@ size_t stack<T>::count()const noexcept
 template <typename T>
 void stack<T>::push(T const & value)
 {
-	mutex.lock();
+	mutex_.lock();
 	if (empty())
 	{
 		array_size_ = 1;
@@ -87,16 +87,16 @@ void stack<T>::push(T const & value)
 	}
 	array_[count_] = value;
 	count_++;
-	mutex.unlock();
+	mutex_.unlock();
 }
 template <typename T>
 void stack<T>::pop()
 {
-	mutex.lock();
+	mutex_.lock();
 	if (empty())
 		throw std::logic_error("Stack is empty");
 	--count_;
-	mutex.unlock();
+	mutex_.unlock();
 }
 template <typename T>
 T stack<T>::top()const 
