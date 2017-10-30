@@ -20,7 +20,7 @@ public:
 	bool empty()const noexcept;
 private:
 	void swap(stack<T>&)noexcept;
-	std::mutex mutex_;
+	mutable std::mutex mutex_;
 	T * array_;
 	size_t array_size_;
 	size_t count_;
