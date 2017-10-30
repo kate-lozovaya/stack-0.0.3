@@ -3,8 +3,7 @@
 #include <chrono>
 #include <thread>
 
-template <typename T> 
-void producer(stack<T> &Stack)
+void producer(stack<int> &Stack)
 {
 	for(;;)
 	{
@@ -12,8 +11,8 @@ void producer(stack<T> &Stack)
 		std::this_thread::sleep_for(std::chrono::seconds(std::rand() % (3) + 1));
 	}
 }
-template <typename T> 
-void consumer(stack<T> &Stack)
+
+void consumer(stack<int> &Stack)
 {
 	for(;;)
 	{
