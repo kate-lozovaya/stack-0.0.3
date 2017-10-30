@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <new>
+#include <mutex>
 
 template <typename T>
 class stack
