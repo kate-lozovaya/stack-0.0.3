@@ -1,50 +1,37 @@
 #include "stack.hpp"
 #include <stdlib.h>
 #include <string>
+#include <chrono>
+#include <thread>
+
+template <typename T> 
+void producer(stack<T> &Stack)
+{
+	for(;;)
+	{
+		Stack.push(std::rand() % 100);
+		std::this_thread::sleep_for(std::chrono::seconds(std::rand() % (3) + 1));
+	}
+}
+
+void consumer(stack<T> &Stack)
+{
+	for(;;)
+	{
+		Stack.pop();
+		std::this_thread::sleep_for(std::chrono::seconds(std::rand() % (3) + 2));
+	}	
+}
 
 int main()
 {
 	stack<int> Stack;
-	std::string str;
-	unsigned int i = 0;
-
-	std::cout << "Add an element: +<Element>\nShow the last element: ?\nPop the last element: -\nShow the stack: =\n\n";
-	std::getline(std::cin, str);
-
-	while (str[i] != '\0')
-	{
-		switch (str[i])
-		{
-		case '+':
-		{
-					if (str[i + 1] == ' ' || str[i + 1] == '\0')
-						std::cout << "An error has occurred while reading arguments\n";
-					else
-					{
-						Stack.push(stoi(str.substr(i + 1)));
-					}
-					break;
-		}
-		case '?':
-		{
-					std::cout << Stack.top();
-					std::cout << std::endl;
-					break;
-		}
-		case '-':
-		{
-					Stack.pop();
-					break;
-		}
-		case '=':
-		{
-					Stack.print(std::cout);
-					break;
-		}
-		defoult: break;
-		}
-		i++;
-	}
+	
+	std::thread prod(producer, std::ref(Stack));
+	std::thread cons(consumer, std::ref(Stack));
+	
+	prod.join();
+	cons.join();
 
 	system("pause");
 	return 0;
