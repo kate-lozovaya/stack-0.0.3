@@ -36,7 +36,7 @@ stack<T>::~stack()noexcept
 template <typename T>
 stack<T>::stack(stack<T> const& other)
 {
-	std::lock_guard<std::mutex>() lock(other.mutex_);
+	std::lock_guard<std::mutex> lock(other.mutex_);
 	T new_array = new T [other.array_size_];
 	array_size_ = other.array_size_;
 	count_ = other.count_;	
@@ -54,7 +54,7 @@ stack<T>::stack(stack<T> const& other)
 template <typename T>
 stack<T>& stack<T>::operator=(stack<T> const & other)
 {
-	std::lock_guard<std::mutex>() lock(mutex_);
+	std::lock_guard<std::mutex> lock(mutex_);
 	if (&other != this)
 		stack(other).swap(*this);
 	return *this;
@@ -62,13 +62,13 @@ stack<T>& stack<T>::operator=(stack<T> const & other)
 template <typename T>
 size_t stack<T>::count()const noexcept
 {
-	std::lock_guard<std::mutex>() lock(mutex_);
+	std::lock_guard<std::mutex> lock(mutex_);
 	return count_;
 }
 template <typename T>
 void stack<T>::push(T const & value)
 {
-	std::lock_guard<std::mutex>() lock(mutex_);
+	std::lock_guard<std::mutex> lock(mutex_);
 	if (empty())
 	{
 		array_size_ = 1;
@@ -95,7 +95,7 @@ void stack<T>::push(T const & value)
 template <typename T>
 auto stack<T>::pop() -> std::shared_ptr<T>
 {
-	std::lock_guard<std::mutex>() lock(mutex_);
+	std::lock_guard<std::mutex> lock(mutex_);
 	if (empty())
 		throw std::logic_error("Stack is empty");
 	--count_;
@@ -125,6 +125,6 @@ void stack<T>::swap(stack<T>& other)noexcept
 template <typename T>
 bool stack<T>::empty()const noexcept
 {
-	std::lock_guard<std::mutex>() lock(mutex_);
+	std::lock_guard<std::mutex> lock(mutex_);
 	return (count_ == 0);
 }
