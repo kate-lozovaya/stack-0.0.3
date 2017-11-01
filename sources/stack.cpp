@@ -1,7 +1,6 @@
 #include "stack.hpp"
 #include <string>
 #include <chrono>
-#include <thread>
 
 void producer(stack<int> &Stack)
 {
