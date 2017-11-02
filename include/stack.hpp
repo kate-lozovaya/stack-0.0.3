@@ -96,9 +96,11 @@ template <typename T>
 auto stack<T>::pop() -> std::shared_ptr<T>
 {
 	std::lock_guard<std::mutex> lock(mutex_);
+	T top = std::make_shared<T>(array_[count_ - 1]);
 	if (empty())
 		throw std::logic_error("Stack is empty");
 	--count_;
+	return top;
 }
 template <typename T>
 void stack<T>::print(std::ostream&stream)const 
