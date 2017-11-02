@@ -16,7 +16,6 @@ public:
 	size_t count()const noexcept;
 	void push(T const&)/*strong*/;
 	auto pop() -> std::shared_ptr<T>/*strong*/;
-	void print(std::ostream&stream)const /*strong*/;
 	bool empty()const noexcept;
 private:
 	void swap(stack<T>&)noexcept;
@@ -101,18 +100,6 @@ auto stack<T>::pop() -> std::shared_ptr<T>
 		throw std::logic_error("Stack is empty");
 	--count_;
 	return top;
-}
-template <typename T>
-void stack<T>::print(std::ostream&stream)const 
-{
-	mutex_.lock();
-	if(!empty())
-	{
-	        for (unsigned int i = 0; i < count_; ++i)
-		        stream << array_[i] << " ";
-	        stream << std::endl;
-	}
-	mutex_.unlock();
 }
 template <typename T>
 void stack<T>::swap(stack<T>& other)noexcept
