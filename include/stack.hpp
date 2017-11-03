@@ -48,6 +48,7 @@ stack<T>::stack(stack<T> const& other)
 	{
 		std::cerr << "ERROR" << std::endl;
 		delete[] array_;
+		throw;
 	}
 }
 template <typename T>
