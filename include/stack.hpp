@@ -48,7 +48,6 @@ stack<T>::stack(stack<T> const& other)
 	{
 		std::cerr << "ERROR" << std::endl;
 		delete[] array_;
-		throw;
 	}
 }
 template <typename T>
@@ -86,7 +85,6 @@ void stack<T>::push(T const & value)
 		catch(std::bad_alloc)
 	        {
 		        std::cerr << "bad_alloc caught" << std::endl;
-			throw;
 	        }
 	}
 	array_[count_] = value;
